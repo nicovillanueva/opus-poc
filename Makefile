@@ -1,5 +1,5 @@
 all: clean
-	gcc -I/usr/local/include/opus -L/usr/local/lib -lopus -o main main.c && \
+	gcc `pkg-config --cflags --libs opus` -o main main.c && \
 	echo "---" && ./main
 
 clean:
@@ -7,4 +7,4 @@ clean:
 
 deps:
 	apt-get update && \
-	apt-get install -y gcc libopus-dev
+	apt-get install -y gcc pkg-config libopus-dev

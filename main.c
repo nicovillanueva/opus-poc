@@ -8,7 +8,6 @@ const int channels = 1;
 const opus_int32 sample_rate = 48000;
 const int frame_size_ms = 60;
 const int frame_size = 5760;
-const int length = channels * frame_size_ms * (sample_rate/1000);
 
 int main(int argc, char const *argv[])
 {
@@ -33,6 +32,7 @@ int main(int argc, char const *argv[])
         fclose(fp), free(buffer), fputs("buffer read failed", stderr), exit(1);
     }
 
+    int length = channels * frame_size_ms * (sample_rate / 1000);
     st = opus_decoder_create(sample_rate, channels, &err);
     int frames = opus_decode(st, buffer, length, &out, frame_size, FALSE); // OPUS_INVALID_PACKET
     fprintf(stdout, "decoded %d samples", frames);
