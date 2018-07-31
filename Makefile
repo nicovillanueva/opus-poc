@@ -4,3 +4,7 @@ all: clean
 
 clean:
 	rm -fv main
+
+deps:
+	apt-get update && \
+	apt-get install -y gcc libopus-dev
